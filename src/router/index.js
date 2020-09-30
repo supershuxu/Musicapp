@@ -27,6 +27,11 @@ const router = new VueRouter({
             path: '/yun',
             name: 'Yun',
             component: () => import("../views/Yun/index.vue")
+        },
+        {
+            path: '/songdetails/:id',
+            name: 'Songdetails',
+            component: () => import("../views/Songdetails/index.vue")
         }
     ],
     linkActiveClass: 'active'

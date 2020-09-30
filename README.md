@@ -1,4 +1,4 @@
-# musicapp
+# musicsapp
 
 ## Project setup
 ```
