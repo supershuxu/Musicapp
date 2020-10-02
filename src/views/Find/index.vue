@@ -129,10 +129,7 @@
         mounted() {
 
         },
-        beforeCreate() {},
-        beforeMount() {},
-        beforeUpdate() {},
-        updated() {},
+      
         beforeDestroy() {},
         destroyed() {},
         activated() {},
