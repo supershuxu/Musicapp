@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1617138",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "4197854",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "6227849",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "7974081",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "14175936",
+      "name": "搜索",
+      "font_class": "zhengzhouyinhangAPPtubiaodiergaolunkuohuachunse-11",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    }
+  ]
+}
