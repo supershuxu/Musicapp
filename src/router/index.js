@@ -33,6 +33,8 @@ const router = new VueRouter({
             name: 'Songdetails',
             component: () => import("../views/Songdetails/index.vue")
         }
+
+        
     ],
     linkActiveClass: 'active'
 })

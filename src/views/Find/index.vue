@@ -130,9 +130,6 @@
 
         },
       
-        beforeDestroy() {},
-        destroyed() {},
-        activated() {},
         components: {
             Header,
             Footer
