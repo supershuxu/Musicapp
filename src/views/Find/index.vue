@@ -111,7 +111,6 @@
                 })
             },
         store,
-
             choose() {
            this.$refs.Footer.adddd()
             },
@@ -126,9 +125,7 @@
         created() {
             this.getmusiclist()
         },
-        mounted() {
-
-        },
+      
       
         components: {
             Header,
