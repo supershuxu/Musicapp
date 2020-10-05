@@ -3,7 +3,7 @@ ul,li{ list-style: none;}
 img{ display: block;}
 html,body{ height:100%;}
 html{
-    font-size: 13.3333vw;
+    font-size: 13.333vw;
     /* 1vw = 3.75px 
        26.666667vw / 2 = 13.333333vw
     */

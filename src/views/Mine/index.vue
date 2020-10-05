@@ -28,8 +28,7 @@ export default {
   },
   beforeCreate() {},
   beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
+ 
   beforeDestroy() {},
   destroyed() {},
   activated() {},
