@@ -1,7 +1,7 @@
 <template>
   <div class=''>
     <footer class="footerCon" v-if="musicsoon">
-      <aplayer autoplay :music="{
+      <aplayer    v-if="musicsoon" :music="{
 
     title: list.title,
 
@@ -11,7 +11,7 @@
 
     pic: list.pic,
 
-    lrc: 11
+    lrc: list.title,
 
   }"> </aplayer>
 
@@ -37,32 +37,28 @@
         }
       };
     },
-
     computed: {
-      // app() {
-      //   //return this.$store.state.soon
-      //   return this.$store.state.listId, this.$store.state.soon, this.$store.state.i
-      // }
     },
     watch: {
-      store,
     },
     methods: {
       adddd() {
         axios.get(`http://localhost:4000/playlist/detail?id=${this.$store.state.listId}`).then(res => {
-          console.log(res, res.data.playlist.tracks)
           this.list.title = res.data.playlist.tracks[this.$store.state.i].name
           this.list.author = res.data.playlist.tracks[this.$store.state.i].ar[0].name
           this.list.pic = res.data.playlist.tracks[this.$store.state.i].al.picUrl
           axios.get(`http://localhost:4000/song/url?id=${this.$store.state.soon}`).then(res => {
-            console.log(res.data.data[0].url)
             this.list.url = res.data.data[0].url
+             if (this.$store.state.listId !== 1) {
+          this.musicsoon = true
+        }else{
+          this.musicsoon = false
+        }
           })
         })
-        if (this.$store.state.listId != 1) {
-          this.musicsoon = true
-        }
-      }
+      },
+      store,
+
     },
     created() {
 
@@ -70,7 +66,7 @@
 
     },
     mounted() {
-      // this.adddd()
+       this.adddd()
 
     },
     beforeCreate() {

@@ -5,63 +5,46 @@
             </template>
         </van-nav-bar>
         <div class="content">
-
             <div class="pic">
-
-                <img src="http://p4.music.126.net/EuVP2n4KLtz4vXX5FBKslw==/109951165141335283.jpg" alt="">
-                <p>华语速爆新歌</p>
-                <div class="bot"><span class="iconfont icon-shouye"></span><span
-                        class="iconfont icon-shouye"></span><span class="iconfont icon-shouye"></span><span
-                        class="iconfont icon-shouye"></span></div>
+                <img :src="picurl" alt="">
+                <p>{{txt}}</p>
+                <div class="bot"><span v-for="item in word" :key="item">{{item}}</span></div>
             </div>
-
             <div class="musicsoonlist">
                 <ul class="musicsoonlistul">
-                    <li>
+                    <li v-for="(item,index) in soonlist" :key="item.id" @click="choose(),$store.commit('change',$route.params.id),$store.commit('reduce',item.id),$store.commit('suoyin',index)">
                         <span>
-                            1
+                            {{index+1}}
                         </span>
-                        <h5>无人知晓</h5>
-                        <h6>柳大壮-lalla</h6>
-                    </li>
-                    <li>
-                        <span>
-                            1
-                        </span>
-                        <h5>无人知晓</h5>
-                        <h6>柳大壮-lalla</h6>
-                    </li>
-                    <li>
-                        <span>
-                            1
-                        </span>
-                        <h5>无人知晓</h5>
-                        <h6>柳大壮-lalla</h6>
-                    </li>
-                    <li>
-                        <span>
-                            1
-                        </span>
-                        <h5>无人知晓</h5>
-                        <h6>柳大壮-lalla</h6>
+                        <h5>{{item.name}}</h5>
+                        <h6>{{item.ar[0].name}}-{{item.al.name}}</h6>
                     </li>
                 </ul>
 
             </div>
         </div>
+    <router-view></router-view>
+        <Footer ref="Footer"></Footer>
+
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+    import Footer from '../../components/Footer'
+    import store from '../../store/store'
 
     export default {
         data() {
             return {
                 soonlist: [],
-
+                picurl:'',
+                txt:'',
+                word:''
             };
         },
+        store,
+
         computed: {},
         watch: {},
         methods: {
@@ -70,17 +53,22 @@
                     path: '/'
                 })
             },
-getlist(){
-     axios.get(`http://localhost:4000/playlist/detail?id=${this.$route.params.id}`).then(res => {
-                    console.log(res, res.data.playlist.tracks)
-                    //this.soonlist = res.data.playlist.tracks
+            getlist() {
+                axios.get(`http://localhost:4000/playlist/detail?id=${this.$route.params.id}`).then(res => {
+                    this.picurl=res.data.playlist.coverImgUrl
+                   this.txt=res.data.playlist.name
+                   this.word=res.data.playlist.tags
+                    this.soonlist = res.data.playlist.tracks
                 })
-}
+            },
+               choose() {
+           this.$refs.Footer.adddd()
+            },
 
 
         },
         created() {
-this.getlist()
+            this.getlist()
         },
         mounted() {
 
@@ -92,7 +80,7 @@ this.getlist()
         beforeDestroy() {},
         destroyed() {},
         activated() {},
-        components: {},
+        components: {Footer},
     }
 </script>
 
@@ -116,12 +104,12 @@ this.getlist()
     }
 
     p {
-        position: absolute;
-        left: 0.76rem;
-        top: 2.90rem;
-        font-size: 0.75rem;
-        font-weight: 900;
-        color: black;
+      position: absolute;
+    left: 0.76rem;
+    top: 3.5rem;
+    font-weight: 900;
+    color: black;
+    font-size: 0.3rem;
     }
 
     .bot {
@@ -148,7 +136,9 @@ this.getlist()
         box-sizing: border-box;
         margin-top: 0.6rem;
     }
-
+.musicsoonlistul{
+    margin-bottom: 1.6rem;
+}
     .musicsoonlistul li span {
         width: 1rem;
         height: 0.7rem;
@@ -166,6 +156,9 @@ this.getlist()
         font-size: 0.27rem;
         color: black;
         font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .musicsoonlistul li h6 {
@@ -175,6 +168,6 @@ this.getlist()
         display: inline-block;
         /* clear: both; */
         /* float: left; */
-        width: 3rem;
+        width: 5rem;
     }
 </style>

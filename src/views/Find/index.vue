@@ -30,18 +30,19 @@
             <div class="musicList">
                 <p>宝藏歌单,值得聆听 <span>查看更多</span></p>
                 <ul class="musicListsul">
-                    <li v-for="item in list" :key="item.id" @click="jump(item.id)"><img :src="item.coverImgUrl" alt="">
+                    <li v-for="item in list" :key="item.id" @click="jump(item.id)"><div class="pic"><img :src="item.coverImgUrl" alt=""></div>
                         <h4>
                             {{item.name}}</h4>
                     </li>
                 </ul>
             </div>
             <div class="otherMusicist">
-                <p>好听的华语歌曲精选 <span>查看更多</span></p>
+                <p>好听的华语歌曲精选 </p>
                 <ul class="otherMusicistul">
                     <li>
-                        <div class="picweap" v-for="(item,index)  in soonlist" :key="item.id" @click="choose(),$store.commit('change',5001),$store.commit('reduce',item.id),$store.commit('suoyin',index)"><img
-                                :src="item.al.picUrl" alt="">
+                        <div class="picweap" v-for="(item,index)  in soonlist" :key="item.id"
+                            @click="choose(),$store.commit('change',5001),$store.commit('reduce',item.id),$store.commit('suoyin',index)">
+                            <img :src="item.al.picUrl" alt="">
                             <h1><mark>{{item.name}}</mark>--{{item.ar[0].name}}</h1>
                             <h2>
                                 所属专辑:{{item.al.name}}
@@ -52,12 +53,13 @@
             </div>
 
 
-              <div class="otherMusicist">
-                <p>好听的流行歌曲精选 <span>查看更多</span></p>
+            <div class="otherMusicist" id="ul2">
+                <p>好听的流行歌曲精选 </p>
                 <ul class="otherMusicistul">
                     <li>
-                        <div class="picweap" v-for="(item,index)  in othersoonlist" :key="item.id" @click="choose(),$store.commit('change',1001),$store.commit('reduce',item.id),$store.commit('suoyin',index)"><img
-                                :src="item.al.picUrl" alt="">
+                        <div class="picweap" v-for="(item,index)  in othersoonlist" :key="item.id"
+                            @click="choose(),$store.commit('change',1001),$store.commit('reduce',item.id),$store.commit('suoyin',index)">
+                            <img :src="item.al.picUrl" alt="">
                             <h1><mark>{{item.name}}</mark>--{{item.ar[0].name}}</h1>
                             <h2>
                                 所属专辑:{{item.al.name}}
@@ -67,7 +69,6 @@
                 </ul>
             </div>
         </div>
-
         <Footer ref="Footer"></Footer>
 
     </div>
@@ -83,50 +84,59 @@
             return {
                 list: [],
                 soonlist: [],
-                othersoonlist:[]
+                othersoonlist: []
             };
 
         },
         computed: {
 
-            
+
         },
         watch: {},
         methods: {
             getmusiclist() {
                 axios.get('http://localhost:4000/top/playlist/highquality').then(res => {
                     this.list = res.data.playlists.slice(0, 10)
-                    console.log( this.list )
+                    console.log(this.list)
                 })
                 //  axios.get('http://localhost:4000/playlist/highquality/tags').then(res => {
                 //     console.log(res.data)
                 // })
                 axios.get('http://localhost:4000/playlist/detail?id=5001').then(res => {
-                   // console.log(res, res.data.playlist.tracks)
+                    // console.log(res, res.data.playlist.tracks)
                     this.soonlist = res.data.playlist.tracks
                 })
-                 axios.get('http://localhost:4000/playlist/detail?id=1001').then(res => {
-                   // console.log(res, res.data.playlist.tracks)
+                axios.get('http://localhost:4000/playlist/detail?id=1001').then(res => {
+                    // console.log(res, res.data.playlist.tracks)
                     this.othersoonlist = res.data.playlist.tracks
                 })
             },
-        store,
+            store,
+
             choose() {
-           this.$refs.Footer.adddd()
+                this.$refs.Footer.adddd()
             },
-            jump(id){
-                  this.$router.push({
-          path: '/songdetails/' + id
-        })
-               // alert(id)
+            jump(id) {
+                this.$router.push({
+                    path: '/songdetails/' + id
+                })
+                // alert(id)
             }
 
         },
         created() {
             this.getmusiclist()
         },
-      
-      
+        mounted() {
+
+        },
+        beforeCreate() {},
+        beforeMount() {},
+        beforeUpdate() {},
+        updated() {},
+        beforeDestroy() {},
+        destroyed() {},
+        activated() {},
         components: {
             Header,
             Footer
@@ -195,6 +205,10 @@
         justify-content: space-between;
     }
 
+    #ul2 {
+        margin-bottom: 1.6rem;
+    }
+
     .content .musicList p span {
         margin-top: 0.16rem;
         height: 0.5rem;
@@ -229,7 +243,16 @@
         width: 2.15rem;
         height: 2.15rem;
     }
-
+.pic{
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
     .musicListsul li h4 {
         width: 2.15rem;
         line-height: 0.36rem;

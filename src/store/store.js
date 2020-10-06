@@ -12,8 +12,6 @@ const state = {
 const mutations={
     change(state,x){
         state.listId=x||4;
-        // state.soon=y||1;
-
     },
     reduce(state,y){
      state.soon=y||1;

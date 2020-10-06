@@ -29,7 +29,6 @@ export default {
   beforeCreate() {},
   beforeMount() {},
  
-  beforeDestroy() {},
   destroyed() {},
   activated() {},
   components: {

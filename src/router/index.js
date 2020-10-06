@@ -1,6 +1,6 @@
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-import Vue from 'vue'
 
 const router = new VueRouter({
     mode: 'history',
@@ -32,6 +32,11 @@ const router = new VueRouter({
             path: '/songdetails/:id',
             name: 'Songdetails',
             component: () => import("../views/Songdetails/index.vue")
+        },
+        {
+            path: '/sonnlist',
+            name: 'Sonnlist',
+            component: () => import("../views/Sonnlist/index.vue")
         }
     ],
     linkActiveClass: 'active'
