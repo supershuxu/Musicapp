@@ -29,7 +29,7 @@ export default {
   beforeCreate() {},
 
  
-  destroyed() {},
+
   activated() {},
   components: {
     Header,
